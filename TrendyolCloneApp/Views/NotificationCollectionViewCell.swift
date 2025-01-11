@@ -9,6 +9,8 @@ import UIKit
 
 class NotificationCollectionViewCell: UICollectionViewCell {
 
+    @IBOutlet weak var backView: UIView!
+    
     static let identifier = "NotificationCollectionViewCell"
     static let nib = UINib(nibName: "NotificationCollectionViewCell", bundle: nil)
     

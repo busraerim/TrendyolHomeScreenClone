@@ -79,7 +79,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
             return cell
         case .horizontalRectangle:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HorizontalRectangleCollectionViewCell.identifier, for: indexPath) as! HorizontalRectangleCollectionViewCell
-            cell.backgroundColor = generateRandomColor()
+            cell.backView.backgroundColor = generateRandomColor()
             return cell
         case .nonSliderRectangle:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NonSliderRectangleCollectionViewCell.identifier, for: indexPath) as! NonSliderRectangleCollectionViewCell
@@ -87,7 +87,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
             return cell
         case .notificationSection:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NotificationCollectionViewCell.identifier, for: indexPath) as! NotificationCollectionViewCell
-            cell.backgroundColor = generateRandomColor()
+            cell.backView.backgroundColor = generateRandomColor()
             return cell
         }
     }

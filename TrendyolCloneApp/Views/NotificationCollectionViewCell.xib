@@ -16,16 +16,35 @@
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="420" height="219"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="anC-q8-cSJ">
+                        <rect key="frame" x="0.0" y="0.0" width="420" height="219"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="10"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
-            <color key="backgroundColor" systemColor="systemOrangeColor"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="anC-q8-cSJ" secondAttribute="trailing" id="8pX-D8-kaB"/>
+                <constraint firstAttribute="bottom" secondItem="anC-q8-cSJ" secondAttribute="bottom" id="C8J-xT-8ca"/>
+                <constraint firstItem="anC-q8-cSJ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Cms-wR-OWR"/>
+                <constraint firstItem="anC-q8-cSJ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Ueh-rq-FF9"/>
+            </constraints>
             <size key="customSize" width="420" height="219"/>
+            <connections>
+                <outlet property="backView" destination="anC-q8-cSJ" id="0qy-ul-sd5"/>
+            </connections>
             <point key="canvasLocation" x="328.24427480916029" y="79.929577464788736"/>
         </collectionViewCell>
     </objects>
     <resources>
-        <systemColor name="systemOrangeColor">
-            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
     </resources>
 </document>

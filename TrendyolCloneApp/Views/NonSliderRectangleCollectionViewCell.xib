@@ -17,7 +17,6 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
-            <color key="backgroundColor" red="0.35294117650000001" green="0.1647058824" blue="0.18039215689999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <size key="customSize" width="495" height="236"/>
             <point key="canvasLocation" x="478.62595419847327" y="85.91549295774648"/>
         </collectionViewCell>
