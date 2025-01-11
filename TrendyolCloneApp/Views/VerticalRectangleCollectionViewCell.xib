@@ -22,10 +22,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="238" height="455"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="anV-3o-c6Y">
-                                <rect key="frame" x="0.0" y="0.0" width="238" height="195"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="195" id="Zgo-z8-r1d"/>
-                                </constraints>
+                                <rect key="frame" x="0.0" y="0.0" width="238" height="364"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="10"/>
@@ -33,16 +30,16 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="XsF-bm-1nJ">
-                                <rect key="frame" x="10" y="205" width="228" height="240"/>
+                                <rect key="frame" x="10" y="374" width="228" height="71"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="89Y-cF-Ttb">
-                                        <rect key="frame" x="0.0" y="0.0" width="228" height="118.66666666666667"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="228" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="**** TL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aK6-dZ-ATL">
-                                        <rect key="frame" x="0.0" y="121.66666666666669" width="228" height="118.33333333333331"/>
+                                        <rect key="frame" x="0.0" y="37" width="228" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -50,7 +47,7 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qUL-Wh-bH6">
-                                <rect key="frame" x="0.0" y="175" width="238" height="20"/>
+                                <rect key="frame" x="0.0" y="344" width="238" height="20"/>
                                 <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="e3L-dE-PDH"/>
@@ -105,6 +102,7 @@
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="Hsf-wI-A0z" secondAttribute="bottom" id="SYj-qk-LGR"/>
                 <constraint firstAttribute="trailing" secondItem="Hsf-wI-A0z" secondAttribute="trailing" id="axx-Vu-CCN"/>
+                <constraint firstItem="anV-3o-c6Y" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" multiplier="0.8" id="uOv-vM-AGP"/>
                 <constraint firstItem="Hsf-wI-A0z" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="xap-gL-4cW"/>
                 <constraint firstItem="Hsf-wI-A0z" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="xyM-Vv-E55"/>
             </constraints>
