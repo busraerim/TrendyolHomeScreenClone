@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="U6b-Vx-4bR" customClass="HeaderCollectionReusableView" customModule="TrendyolCloneApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="637" height="60"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d4f-aF-fcn">
+                    <rect key="frame" x="10" y="0.0" width="627" height="60"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iVg-Pl-UeO">
+                            <rect key="frame" x="0.0" y="0.0" width="505.33333333333331" height="60"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I24-vp-bj2">
+                            <rect key="frame" x="505.33333333333343" y="0.0" width="121.66666666666669" height="60"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" imagePlacement="trailing" titleAlignment="trailing">
+                                <imageReference key="image" image="arrow.right" catalog="system" symbolScale="small"/>
+                                <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="small"/>
+                                <attributedString key="attributedTitle">
+                                    <fragment content="Tümünü Gör ">
+                                        <attributes>
+                                            <font key="NSFont" size="14" name="Avenir-Roman"/>
+                                            <font key="NSOriginalFont" size="12" name="Helvetica"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                            </buttonConfiguration>
+                        </button>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="VXr-Tz-HHm"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="d4f-aF-fcn" secondAttribute="bottom" id="328-ci-XVB"/>
+                <constraint firstItem="d4f-aF-fcn" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" id="7Bf-Ph-NAI"/>
+                <constraint firstItem="d4f-aF-fcn" firstAttribute="leading" secondItem="VXr-Tz-HHm" secondAttribute="leading" constant="10" id="jJS-o4-BVZ"/>
+                <constraint firstItem="d4f-aF-fcn" firstAttribute="trailing" secondItem="U6b-Vx-4bR" secondAttribute="trailing" id="vEk-T0-N9v"/>
+            </constraints>
+            <connections>
+                <outlet property="seeAllButton" destination="I24-vp-bj2" id="ehM-QB-Q4s"/>
+                <outlet property="titleLabel" destination="iVg-Pl-UeO" id="0Zg-37-bk7"/>
+            </connections>
+            <point key="canvasLocation" x="287.78625954198475" y="23.943661971830988"/>
+        </collectionReusableView>
+    </objects>
+    <resources>
+        <image name="arrow.right" catalog="system" width="128" height="95"/>
+    </resources>
+</document>
