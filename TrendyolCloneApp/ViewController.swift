@@ -15,11 +15,11 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        createSectionList()
+        configureSectionList()
         prepareCollectionView()
     }
 
-    private func createSectionList() {
+    private func configureSectionList() {
         sectionList.append(SectionModel(itemCount: 1, sectionStyle: .notificationSection))
         sectionList.append(SectionModel(itemCount: 10, sectionStyle: .littleSquare))
         sectionList.append(SectionModel(itemCount: 7, sectionStyle: .verticalRectangle))
@@ -119,90 +119,105 @@ extension ViewController {
         }
     }
     
-    func makeSliderLayoutSection(sectionIndex: Int ) -> NSCollectionLayoutSection {
+    func createNotificationSectionLayout(sectionIndex: Int) -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),heightDimension: .fractionalHeight(0.15))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 1)
+        group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10)
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .continuous
+        return section
+    }
+    
+    func createLittleSquareLayout(sectionIndex: Int) -> NSCollectionLayoutSection {
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(45))
+        let headerElement = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+        headerElement.pinToVisibleBounds = false
+        
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.3), heightDimension: .fractionalHeight(1))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0)
+        
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.9),heightDimension: .fractionalHeight(0.15))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 4)
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .continuous
+        section.boundarySupplementaryItems = [headerElement]
+        return section
+    }
+    
+    func createVerticalRectangleLayout(sectionIndex: Int) -> NSCollectionLayoutSection {
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(45))
+        let headerElement = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+        headerElement.pinToVisibleBounds = false
+        
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.4), heightDimension: .fractionalHeight(1))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
+        
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.85),heightDimension: .fractionalHeight(0.37))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 2)
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.boundarySupplementaryItems = [headerElement]
+        section.orthogonalScrollingBehavior = .continuous
+        return section
+    }
+    
+    func createHorizontalRectangleLayout(sectionIndex: Int) -> NSCollectionLayoutSection {
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(45))
+        let headerElement = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+        headerElement.pinToVisibleBounds = false
+        
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.7), heightDimension: .fractionalHeight(1))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
+        
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.9),heightDimension: .fractionalHeight(0.2))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 1)
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.boundarySupplementaryItems = [headerElement]
+        section.orthogonalScrollingBehavior = .continuous
+        return section
+    }
+    
+    func createNonSliderRectangleLayout(sectionIndex: Int) -> NSCollectionLayoutSection {
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(45))
+        let headerElement = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+        headerElement.pinToVisibleBounds = false
+        
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.25))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 1, leading: 0, bottom: 1, trailing: 0)
+
+        let count = sectionList[sectionIndex].itemCount
+        let groupHeight = 0.25 * Double(count)
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),heightDimension: .fractionalHeight(groupHeight))
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitem: item, count: count)
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.boundarySupplementaryItems = [headerElement]
+        section.orthogonalScrollingBehavior = .continuous
+        return section
+    }
+    
+    func makeSliderLayoutSection(sectionIndex: Int) -> NSCollectionLayoutSection {
         switch sectionList[sectionIndex].sectionStyle {
         case .notificationSection:
-            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
-            let item = NSCollectionLayoutItem(layoutSize: itemSize)
-            
-            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),heightDimension: .fractionalHeight(0.15))
-            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 1)
-            group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10)
-            
-            let section = NSCollectionLayoutSection(group: group)
-            section.orthogonalScrollingBehavior = .continuous
-            return section
-            
+            createNotificationSectionLayout(sectionIndex: sectionIndex)
         case .littleSquare:
-            let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(45))
-            let headerElement = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
-            headerElement.pinToVisibleBounds = false
-            
-            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.3), heightDimension: .fractionalHeight(1))
-            let item = NSCollectionLayoutItem(layoutSize: itemSize)
-            item.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0)
-            
-            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.9),heightDimension: .fractionalHeight(0.15))
-            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 4)
-            
-            let section = NSCollectionLayoutSection(group: group)
-            section.orthogonalScrollingBehavior = .continuous
-            section.boundarySupplementaryItems = [headerElement]
-            return section
-            
+            createLittleSquareLayout(sectionIndex: sectionIndex)
         case .verticalRectangle:
-            let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(45))
-            let headerElement = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
-            headerElement.pinToVisibleBounds = false
-            
-            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.4), heightDimension: .fractionalHeight(1))
-            let item = NSCollectionLayoutItem(layoutSize: itemSize)
-            item.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
-            
-            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.85),heightDimension: .fractionalHeight(0.37))
-            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 2)
-            
-            let section = NSCollectionLayoutSection(group: group)
-            section.boundarySupplementaryItems = [headerElement]
-            section.orthogonalScrollingBehavior = .continuous
-            return section
-            
+        createVerticalRectangleLayout(sectionIndex: sectionIndex)
         case .horizontalRectangle:
-            let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(45))
-            let headerElement = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
-            headerElement.pinToVisibleBounds = false
-            
-            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.7), heightDimension: .fractionalHeight(1))
-            let item = NSCollectionLayoutItem(layoutSize: itemSize)
-            item.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
-            
-            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.9),heightDimension: .fractionalHeight(0.2))
-            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 1)
-            
-            let section = NSCollectionLayoutSection(group: group)
-            section.boundarySupplementaryItems = [headerElement]
-            section.orthogonalScrollingBehavior = .continuous
-            return section
-            
+         createHorizontalRectangleLayout(sectionIndex: sectionIndex)
         case .nonSliderRectangle:
-            let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(45))
-            let headerElement = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
-            headerElement.pinToVisibleBounds = false
-            
-            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.25))
-            let item = NSCollectionLayoutItem(layoutSize: itemSize)
-            item.contentInsets = NSDirectionalEdgeInsets(top: 1, leading: 0, bottom: 1, trailing: 0)
-
-            let count = sectionList[sectionIndex].itemCount
-            let groupHeight = 0.25 * Double(count)
-            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),heightDimension: .fractionalHeight(groupHeight))
-            let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitem: item, count: count)
-            
-            let section = NSCollectionLayoutSection(group: group)
-            section.boundarySupplementaryItems = [headerElement]
-            section.orthogonalScrollingBehavior = .continuous
-            return section
-            
+         createNonSliderRectangleLayout(sectionIndex: sectionIndex)
         }
     }
 }
