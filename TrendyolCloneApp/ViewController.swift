@@ -89,20 +89,18 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NotificationCollectionViewCell.identifier, for: indexPath) as! NotificationCollectionViewCell
             cell.backgroundColor = generateRandomColor()
             return cell
-        default:
-            return UICollectionViewCell()
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionView.elementKindSectionHeader {
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderCollectionReusableView.identifier, for: indexPath) as! HeaderCollectionReusableView
-            if indexPath.section == 1 {
-                headerView.showSeeAllButton = true
-            } else {
-                headerView.showSeeAllButton = false
+            switch sectionList[indexPath.section].sectionStyle {
+            case .littleSquare, .nonSliderRectangle:
+                headerView.seeAllButton.isHidden = true
+            default:
+                headerView.seeAllButton.isHidden = false
             }
-            headerView.setupHeaderView()
             return headerView
         }
         return UICollectionReusableView()
@@ -119,6 +117,13 @@ extension ViewController {
         }
     }
     
+    func createHeaderElement() -> NSCollectionLayoutBoundarySupplementaryItem {
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(45))
+        let headerElement = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+        headerElement.pinToVisibleBounds = false
+        return headerElement
+    }
+    
     func createNotificationSectionLayout(sectionIndex: Int) -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
@@ -133,9 +138,7 @@ extension ViewController {
     }
     
     func createLittleSquareLayout(sectionIndex: Int) -> NSCollectionLayoutSection {
-        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(45))
-        let headerElement = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
-        headerElement.pinToVisibleBounds = false
+       let headerElement = createHeaderElement()
         
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.3), heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
@@ -151,9 +154,7 @@ extension ViewController {
     }
     
     func createVerticalRectangleLayout(sectionIndex: Int) -> NSCollectionLayoutSection {
-        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(45))
-        let headerElement = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
-        headerElement.pinToVisibleBounds = false
+        let headerElement = createHeaderElement()
         
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.4), heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
@@ -169,9 +170,7 @@ extension ViewController {
     }
     
     func createHorizontalRectangleLayout(sectionIndex: Int) -> NSCollectionLayoutSection {
-        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(45))
-        let headerElement = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
-        headerElement.pinToVisibleBounds = false
+        let headerElement = createHeaderElement()
         
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.7), heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
@@ -187,9 +186,7 @@ extension ViewController {
     }
     
     func createNonSliderRectangleLayout(sectionIndex: Int) -> NSCollectionLayoutSection {
-        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(45))
-        let headerElement = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
-        headerElement.pinToVisibleBounds = false
+        let headerElement = createHeaderElement()
         
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.25))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)

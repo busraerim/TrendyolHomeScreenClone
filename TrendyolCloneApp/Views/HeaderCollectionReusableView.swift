@@ -14,15 +14,10 @@ class HeaderCollectionReusableView: UICollectionReusableView {
 
     static let identifier = "HeaderCollectionReusableView"
     static let nib = UINib(nibName: "HeaderCollectionReusableView", bundle: nil)
-    
-    var showSeeAllButton: Bool = false
-    
+        
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
     
-    public func setupHeaderView() {
-        seeAllButton.isHidden = showSeeAllButton
-    }
 }

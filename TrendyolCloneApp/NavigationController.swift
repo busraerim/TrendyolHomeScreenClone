@@ -25,7 +25,7 @@ class NavigationController: UINavigationController {
     
     lazy var rightSecondButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: "cart.fill"), for: .normal)
+        button.setImage(UIImage(systemName: "bell.fill"), for: .normal)
         button.tintColor = .gray
         return button
     } ()
